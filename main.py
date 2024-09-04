@@ -1,10 +1,8 @@
 import src.get_configs as config
-
 from chromedriver_py import binary_path
 from selenium import webdriver
 import src.works_template as works
 import src.api_auth as api
-import time
 
 
 # Setting up ChromeDriver service

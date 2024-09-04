@@ -54,12 +54,17 @@ def writer(config, trash, date):
         json.dump(data, json_file, indent=4)
 
 
-def reader():
-    # Read the existing JSON file
-    with open('data1.json', 'r') as json_file:
-        data = json.load(json_file)
+def reader(file):
+    # # Read the existing JSON file
+    # with open(file, 'r') as json_file:
+    #     data = json.load(json_file)
+    #
+    # print(data)
 
-    print(data)
+
+    with open(file, 'r') as json_file:
+        data = json.load(json_file)
+        return data
 
 
 def data(driver, config):
