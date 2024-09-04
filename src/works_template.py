@@ -6,6 +6,7 @@ from googleapiclient.http import MediaIoBaseDownload
 import json
 import os
 import io
+import src.get_configs as config
 
 
 def month_to_int(month):
@@ -46,11 +47,11 @@ def creator(config):
 
 def writer(config, trash, date):
     # Read the existing JSON file
-    with open('data/' + config.street_name + config.house_name + '.json', 'r') as json_file:
+    with open('data/' + config.button_configs.street_name + config.button_configs.house_name + '.json', 'r') as json_file:
         data = json.load(json_file)
 
     data[trash].append(date)  # Adding a new date
-    with open('data/' + config.street_name + config.house_name + '.json', 'w') as json_file:
+    with open('data/' + config.button_configs.street_name + config.button_configs.house_name + '.json', 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
 
@@ -71,23 +72,25 @@ def data(driver, config):
     for num in range(3):
 
         name_xp, fw_xp, xp, class_xp, count = '', '', '', '', num + 1
-
+        print(f'BAND {config.garbage_configs.mixed_name_xp}')
         if count == 1:
-            name_xp, fw_xp = config.mixed_name_xp, config.mixed_fw_xp
-            calendar_xp, xp = config.mixed_calendar_xp, config.mixed_xp
-            class_xp = config.mixed_class_xp
+            name_xp, fw_xp = config.garbage_configs.mixed_name_xp, config.button_configs.mixed_fw_xp
+            calendar_xp, xp = config.garbage_configs.mixed_calendar_xp, config.button_configs.mixed_xp
+            class_xp = config.garbage_configs.mixed_class_xp
         elif count == 2:
-            name_xp, fw_xp = config.paper_name_xp, config.paper_fw_xp
-            calendar_xp, xp = config.paper_calendar_xp, config.paper_xp
-            class_xp = config.paper_class_xp
+            name_xp, fw_xp = config.garbage_configs.paper_name_xp, config.button_configs.paper_fw_xp
+            calendar_xp, xp = config.garbage_configs.paper_calendar_xp, config.button_configs.paper_xp
+            class_xp = config.garbage_configs.paper_class_xp
         elif count == 3:
-            name_xp, fw_xp = config.mixed_name_xp, config.mixed_fw_xp
-            calendar_xp, xp = config.mixed_calendar_xp, config.mixed_xp
-            class_xp = config.mixed_class_xp
+            name_xp, fw_xp = config.garbage_configs.mixed_name_xp, config.button_configs.mixed_fw_xp
+            calendar_xp, xp = config.garbage_configs.mixed_calendar_xp, config.button_configs.mixed_xp
+            class_xp = config.garbage_configs.mixed_class_xp
 
+        print(name_xp)
         garbage_type = driver.find_element(By.XPATH, name_xp)
         print(f'\nGenerating {garbage_type.text} information')
         inputs.press_button(driver, xp)
+        print(f'BAND {xp}')
         forward_button = driver.find_element(By.XPATH, fw_xp)
 
         for i in range(6):

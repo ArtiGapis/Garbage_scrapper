@@ -1,4 +1,4 @@
-import src.get_configs as config
+import src.get_configs as configs
 from chromedriver_py import binary_path
 from selenium import webdriver
 import src.works_template as works
@@ -12,18 +12,18 @@ chrome = webdriver.Chrome(service=svc)
 # Navigating to the URL
 chrome.get("https://grafikai.svara.lt/")  # Replace with the actual URL
 chrome.implicitly_wait(50)
-works.input_street(chrome, config.button_configs)
+works.input_street(chrome, configs.button_configs)
 
 if __name__ == '__main__':
-    # works.creator(all_configs)
-    # works.data(chrome, all_configs)
+    works.creator(configs.button_configs)
+    works.data(chrome, configs)
     # chrome.quit()
 
-    write_api = api.authenticate(config.api_configs, config.api_configs.writer_scope)
+    write_api = api.authenticate(configs.api_configs, configs.api_configs.writer_scope)
 
     # Upload the JSON file to Google Drive
-    works.upload_json_file_to_drive(write_api, config.api_configs.folder_id,
-                                    config.api_configs.file_path)
+    works.upload_json_file_to_drive(write_api, configs.api_configs.folder_id,
+                                    configs.api_configs.file_path)
 
 
     # read_api = api.authenticate(config.api_configs, config.api_configs.writer_scope)
@@ -33,4 +33,3 @@ if __name__ == '__main__':
     # file_id = '1cQLhSkppMyKvJ0hij3otK3TKRPctkw1U'
     # # Download the JSON file from Google Drive
     # works.download_json_file_from_drive(read_api, file_id, destination)
-

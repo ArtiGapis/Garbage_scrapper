@@ -9,9 +9,9 @@ class GarbageClass:
     glass_name_xp: []
     glass_calendar_xp: []
     glass_class_xp: []
-    mixed_xp: []
     mixed_calendar_xp: []
     mixed_class_xp: []
+    mixed_name_xp: []
 
 
 @dataclass()
@@ -25,7 +25,7 @@ class ButtonsClass:
     paper_fw_xp: []
     glass_fw_xp: []
     mixed_fw_xp: []
-    mixed_name_xp: []
+    mixed_xp: []
 
 
 @dataclass()

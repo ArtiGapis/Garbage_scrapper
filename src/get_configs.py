@@ -19,7 +19,7 @@ def garbage_class(yml):
     mixed_class_xp = my_config['garbages']['mixed']['class_xpath']
     return classes.GarbageClass(paper_name_xp, paper_calendar_xp, paper_class_xp,
                                 glass_name_xp, glass_calendar_xp, glass_class_xp,
-                                mixed_name_xp, mixed_calendar_xp, mixed_class_xp
+                                mixed_calendar_xp, mixed_class_xp, mixed_name_xp
                                 )
 
 
@@ -38,10 +38,8 @@ def buttons_class(yml):
     mixed_fw_xp = my_config['buttons']['mixed_fw_xpath']
     return classes.ButtonsClass(street_xp, street_name, house_xp,
                                 house_name, paper_xp, glass_xp,
-                                paper_fw_xp, glass_fw_xp, mixed_xp,
-                                mixed_fw_xp)
-
-
+                                paper_fw_xp, glass_fw_xp,mixed_fw_xp, mixed_xp
+                                )
 def api_class(yml):
     with open(yml, encoding='utf8') as f:
         my_config = yaml.load(f, Loader=yaml.FullLoader)
