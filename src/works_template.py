@@ -47,11 +47,11 @@ def creator(config):
 
 def writer(config, trash, date):
     # Read the existing JSON file
-    with open('data/' + config.button_configs.street_name + config.button_configs.house_name + '.json', 'r') as json_file:
+    with open('data/' + config.address_configs.street_name + config.address_configs.house_name + '.json', 'r') as json_file:
         data = json.load(json_file)
 
     data[trash].append(date)  # Adding a new date
-    with open('data/' + config.button_configs.street_name + config.button_configs.house_name + '.json', 'w') as json_file:
+    with open('data/' + config.address_configs.street_name + config.address_configs.house_name + '.json', 'w') as json_file:
         json.dump(data, json_file, indent=4)
 
 
@@ -72,7 +72,6 @@ def data(driver, config):
     for num in range(3):
 
         name_xp, fw_xp, xp, class_xp, count = '', '', '', '', num + 1
-        print(f'BAND {config.garbage_configs.mixed_name_xp}')
         if count == 1:
             name_xp, fw_xp = config.garbage_configs.mixed_name_xp, config.button_configs.mixed_fw_xp
             calendar_xp, xp = config.garbage_configs.mixed_calendar_xp, config.button_configs.mixed_xp
@@ -86,11 +85,9 @@ def data(driver, config):
             calendar_xp, xp = config.garbage_configs.mixed_calendar_xp, config.button_configs.mixed_xp
             class_xp = config.garbage_configs.mixed_class_xp
 
-        print(name_xp)
         garbage_type = driver.find_element(By.XPATH, name_xp)
         print(f'\nGenerating {garbage_type.text} information')
         inputs.press_button(driver, xp)
-        print(f'BAND {xp}')
         forward_button = driver.find_element(By.XPATH, fw_xp)
 
         for i in range(6):

@@ -15,11 +15,15 @@ class GarbageClass:
 
 
 @dataclass()
-class ButtonsClass:
+class AddressClass:
     street_xp: []
     street_name: []
     house_xp: []
     house_name: []
+
+
+@dataclass()
+class ButtonsClass:
     paper_xp: []
     glass_xp: []
     paper_fw_xp: []

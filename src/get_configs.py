@@ -23,23 +23,30 @@ def garbage_class(yml):
                                 )
 
 
-def buttons_class(yml):
+def address_class(yml):
     with open(yml, encoding='utf8') as f:
         my_config = yaml.load(f, Loader=yaml.FullLoader)
     street_xp = my_config['street']['xpath']
     street_name = my_config['street']['name']
     house_xp = my_config['house']['xpath']
     house_name = my_config['house']['name']
+    return classes.AddressClass(street_xp, street_name, house_xp, house_name)
+
+
+def buttons_class(yml):
+    with open(yml, encoding='utf8') as f:
+        my_config = yaml.load(f, Loader=yaml.FullLoader)
     paper_xp = my_config['buttons']['paper_xpath']
     glass_xp = my_config['buttons']['glass_xpath']
     mixed_xp = my_config['buttons']['mixed_xpath']
     paper_fw_xp = my_config['buttons']['paper_fw_xpath']
     glass_fw_xp = my_config['buttons']['glass_fw_xpath']
     mixed_fw_xp = my_config['buttons']['mixed_fw_xpath']
-    return classes.ButtonsClass(street_xp, street_name, house_xp,
-                                house_name, paper_xp, glass_xp,
+    return classes.ButtonsClass(paper_xp, glass_xp,
                                 paper_fw_xp, glass_fw_xp,mixed_fw_xp, mixed_xp
                                 )
+
+
 def api_class(yml):
     with open(yml, encoding='utf8') as f:
         my_config = yaml.load(f, Loader=yaml.FullLoader)
@@ -56,3 +63,4 @@ def api_class(yml):
 garbage_configs = garbage_class(f'{path[1]}/config/main.yml')
 button_configs = buttons_class(f'{path[1]}/config/main.yml')
 api_configs = api_class(f'{path[1]}/config/main.yml')
+address_configs = address_class(f'{path[1]}/config/main.yml')
