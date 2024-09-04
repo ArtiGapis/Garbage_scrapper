@@ -1,12 +1,9 @@
 import src.inputs as inputs
-import time
 from selenium.webdriver.common.by import By
 from googleapiclient.http import MediaFileUpload
-from googleapiclient.http import MediaIoBaseDownload
+import time
 import json
 import os
-import io
-import src.get_configs as config
 
 
 def month_to_int(month):
@@ -56,13 +53,6 @@ def writer(config, trash, date):
 
 
 def reader(file):
-    # # Read the existing JSON file
-    # with open(file, 'r') as json_file:
-    #     data = json.load(json_file)
-    #
-    # print(data)
-
-
     with open(file, 'r') as json_file:
         data = json.load(json_file)
         return data
@@ -127,10 +117,6 @@ def input_street(driver, config):
     inputs.home_input(driver, config.house_xp, config.house_name)
 
 
-from googleapiclient.http import MediaFileUpload
-import os
-
-
 def upload_json_file_to_drive(service, folder_id, file_path):
     # Extract the file name from the file path
     file_name = os.path.basename(file_path)
@@ -156,15 +142,3 @@ def upload_json_file_to_drive(service, folder_id, file_path):
         media = MediaFileUpload(file_path, mimetype='application/json')
         new_file = service.files().create(body=file_metadata, media_body=media, fields='id').execute()
         print(f"File uploaded successfully. File ID: {new_file.get('id')}")
-
-
-# def download_json_file_from_drive(service, file_id, destination):
-#     request = service.files().get_media(fileId=file_id)
-#     fh = io.FileIO(destination, 'wb')
-#     downloader = MediaIoBaseDownload(fh, request)
-#
-#     done = False
-#     while done is False:
-#         status, done = downloader.next_chunk()
-#         print(f"Download progress: {int(status.progress() * 100)}%")
-#     print(f"File downloaded to {destination}")

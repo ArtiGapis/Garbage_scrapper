@@ -4,9 +4,21 @@ from datetime import datetime
 
 def get_garbage(trash):
     data = works.reader('../data/V. Tuinylos g.23.json')
-    print(f'Add {trash} to calendar')
     return data[trash]
 
+def garbages_today(today):
+    day = f'{today.year} {today.month} {today.day}'
+    wrap = []
+    for days in get_garbage("mixed"):
+        if day in days:
+            wrap.append('Mišrios atliekos')
+    for days in get_garbage("paper"):
+        if day in days:
+            wrap.append('Popieriaus atliekos')
+    for days in get_garbage("glass"):
+        if day in days:
+            wrap.append('Stiklo atliekos')
+    return wrap
 
 # Function to mark specific days by adding events with custom backgrounds
 def mark_days(calendar):
@@ -44,3 +56,5 @@ def mark_days(calendar):
     calendar.tag_config('green', background='green', foreground='white')
     calendar.tag_config('brown', background='brown', foreground='white')
     calendar.tag_config('orange', background='orange', foreground='black')
+
+
